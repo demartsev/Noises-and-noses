@@ -97,9 +97,9 @@ Permutation procedure:
 -	A histogram of permutation generated differences is plotted with the data value marked in red. 
 -	A pseudo P-value is calculated for each pairwise comparison by dividing the number of permuted values that are more extreme then the data driven value and dividing by the total number of permutations. 
 
-*the permutation procedure is than repeated to assess the effect of Non-focal calling on Focal respiration. For this test only the Quiet respiration cycles are used (object: all_peaks_n).*
+*the permutation procedure is repeated to assess the effect of Non-focal calling on Focal respiration. For this we test only the Quiet respiration cycles (object: all_peaks_n).*
 
 Plotting: 
--	The current script generates a series of histograms and box plots. The plotting code is not fully optimized and should be further adapted to the specific needs of the user. 
+-	The current script generates a series of histograms and box plots. The plotting code is not yet fully optimized and should be further adapted to the specific needs of the user. 
 
 
