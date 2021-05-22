@@ -32,9 +32,9 @@ Data loading and merging
 ------------
 The initial steps require merging of data files from multiple sources using different naming conventions. The script is not generalised and works with the naming conventions used in the specific project. The provided sample files demonstrate the process of merging and synchronising the data however usage with files of different formats, structure and naming scheme will require adaptation of the corresponding parts of the code.
 
--	After listing and reading in the initial data files a conversion table (proc_file_list) is generted connecting between imageJ_output files and loopy_output. The matching is     achieved by the name of the video file. 
+-	After listing and reading in the initial data files a conversion table (proc_file_list) is generted connecting between imageJ_output files and loopy_output. The matching 	  is achieved by the name of the video file. 
 -	The per-frame intensity readings are assigned to Left or Right nostril, based on the tracking results. 
--	Intensity is transformed to temperature using raw2temp function and by providing a list of calibration constants from FLIR.csq files. Similar functionality is available in the   Thermimage package
+-	Intensity is transformed to temperature using raw2temp function and by providing a list of calibration constants from FLIR.csq files. Similar functionality is available 	 in the Thermimage package (https://github.com/gtatters/Thermimage.git)
  	
 The data is passed through several quality control steps:
 -	Sequences with above 5 frames gaps are omitted
@@ -49,7 +49,7 @@ Synching of call times with video frames:
 -	Full call times csv is loaded "thermal_audio_raw_timing.csv"
 -	The recording metadata is formatted 
 -	Logfile listing Audio-Video name conversion and frame sync data is loaded “thermal_logfile.csv”
--	By using the synchronisaion coeeficients calls and video frames are alligned. The object AVsummary is created including the ROI thermal measurements, marked frames associated   with focal calls (1) and well as frames associated with non-focal calls (0.5).
+-	By using the synchronisaion coeeficients calls and video frames are alligned. The object AVsummary is created including the ROI thermal measurements, marked frames 		associated with focal calls (1) and well as frames associated with non-focal calls (0.5).
 -	Respiration curves are plotted and visual inspected
 
 Digital filter data smoothing:
@@ -60,9 +60,9 @@ Digital filter data smoothing:
 Breathing phase detection:
 -	A low_frequency signal noise initial threshold value is determined by trial and error (noise.thresh <- 0.25)
 -	Local min and max points are detected by crawling on the temperature curve
--	The process is auto-corrected by flexibly adapting the noise.thresh value according to the calculated breathing rate after each pass. The upper and lower boundaries of the       breathig rate are set acording to the species
+-	The process is auto-corrected by flexibly adapting the noise.thresh value according to the calculated breathing rate after each pass. The upper and lower boundaries of 	the breathig rate are set acording to the species
 -	An optional manual step of peak corrections can be done, based on visual inspection of the breathing curves and min and max locations
--	A secondary detection of expiratory pause phase is done by pulling the min. points and crawling along the curve towards the points of curve undulation by performing a series     of linear regressios with decreasing sizes of data point windows. 
+-	A secondary detection of expiratory pause phase is done by pulling the min. points and crawling along the curve towards the points of curve undulation by performing a 		series of linear regressios with decreasing sizes of data point windows. 
 -	Another optional step of manual correction of the respiration phase transition points can be done based on visual inspection of the breathing curves
 
 Respiration phase measurements:
@@ -95,11 +95,11 @@ Permutation procedure:
 -	run permutation tests with individual ID as a blocking parameter for within individual restricted permutation. The comparisons are made for each one of the respiration phases, between Quiet and one of the Vocalisation associated phases (Pre call, Call, Post call).
 -	For each permutation round a Mean difference is calculated and stored. 
 -	A histogram of permutation generated differences is plotted with the data value marked in red. 
--	A pseudo P-value is calculated for each pairwise comparison by dividing the number of permuted values that are more extreme then the data driven value and dividing by the total number of permutations. 
+-	A pseudo p-value is calculated for each pairwise comparison by dividing the number of permuted values that are more extreme then the data driven value and dividing by 		the total number of permutations. 
 
 *the permutation procedure is repeated to assess the effect of Non-focal calling on Focal respiration. For this we test only the Quiet respiration cycles (object: all_peaks_n).*
 
 Plotting: 
--	The current script generates a series of histograms and box plots. The plotting code is not yet fully optimized and should be further adapted to the specific needs of the user. 
+-	The current script generates a series of histograms and box plots. The plotting code is not yet fully optimized and should be further adapted to the specific needs of 		the user. 
 
 
